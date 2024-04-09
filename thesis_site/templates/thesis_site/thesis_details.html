@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thesis Details</title>
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+            padding: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card {
+            min-width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .card-header {
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+        }
+
+        .card > .card-body {
+            padding: 1rem;
+        }
+
+      nav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: auto;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      nav ul li {
+        float: left;
+      }
+
+      nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+
+      }
+
+      a:hover {
+          color: #f8f9fa;
+          background-color: #4d4d4d;
+      }
+
+      body {
+          font-family: 'Roboto', sans-serif;
+          font-size: 1rem;
+          line-height: 1.5;
+          color: #4d4d4d;
+          background-color: #f8f9fa;
+          max-height: 100vh;
+      }
+
+      .container {
+          height: 80vh;
+          display: flex;
+          flex-direction: column;
+            justify-content: center;
+          align-items: center;
+
+          text-align: center;
+          margin: auto;
+          padding: 0 20px;
+      }
+
+      .topic-description {
+          margin: 20px auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background-color: #f9f9f9;
+          max-width: 800px;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'thesis_topics' %}">Thesis List</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="topic-description">
+        <h3>Title: {{ topic.TopicNo }}: {{ topic.Title }} </h3>
+        <br>
+        <p>
+            <strong>Supervisor:</strong> {{ topic.ThesisSupervisor }}
+        </p>
+        <br>
+        <p>
+            <strong>Category:</strong> {{ topic.Category }}
+        </p>
+        <br>
+        <p>
+            <strong>Description:</strong> {{ topic_desc.Description }}</p>
+    </div>
+</body>
+</html>
