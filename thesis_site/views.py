@@ -27,7 +27,10 @@ def home(request):
 
 def about(request):
     makers = [
-        {'name':'abcd', 'id':'123'}, {'name':'abcd', 'id':'123'}, {'name':'abcd', 'id':'123'}, {'name':'abcd', 'id':'123'}
+        {'name':'Mohammad Reza', 'id':'s366400'},
+        {'name':'Nusrat Jahan', 'id':'s366401'},
+        {'name':'Fauzia Khanom Luna', 'id':'s366819'},
+        {'name':'Umme Salma Rumana', 'id':'s367994'}
     ]
 
     context = {
