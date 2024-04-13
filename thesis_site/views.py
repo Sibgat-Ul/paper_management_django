@@ -21,7 +21,6 @@ thesis_desc = [
 
 
 def home(request):
-    print(thesis_desc)
     return render(request, 'thesis_site/home.html')
 
 
