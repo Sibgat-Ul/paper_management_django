@@ -1,0 +1,22 @@
+{% extends "thesis_site/base.html" %}
+
+{% block title %} Create thesis {% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center">Add New Thesis</h1>
+    <form action="{% url 'add_thesis' %}" method="post">
+        {% csrf_token %}
+
+        <input type="text" id="title" name="title" placeholder="Title" required>
+
+        <input type="text" id="supervisor" name="supervisor" placeholder="Supervisor" required>
+
+        <input type="text" id="category" name="category" placeholder="Category" required>
+
+        <textarea id="description" name="description" placeholder="Description" required></textarea>
+
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+{% endblock %}

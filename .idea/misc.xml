@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="djEnv" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="djEnv" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="backend" project-jdk-type="Python SDK" />
 </project>

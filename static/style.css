@@ -1,0 +1,133 @@
+
+ * {
+    margin: 0;
+    padding: 0;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    min-width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.card > .card-header {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem;
+}
+
+.card > .card-body {
+    padding: 1rem;
+}
+
+nav {
+background-color: #333;
+overflow: hidden;
+}
+
+nav ul {
+list-style-type: none;
+margin: auto;
+padding: 0;
+overflow: hidden;
+}
+
+nav ul li {
+float: left;
+}
+
+nav ul li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+
+}
+
+nav ul li a:hover {
+background-color: #111;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #4d4d4d;
+  background-color: #f8f9fa;
+  height: 100vh;
+}
+
+.base_container {
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    padding: 0 20px;
+}
+
+ .topic-description {
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      max-width: 800px;
+  }
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 22em;
+    padding: 1em;
+}
+
+    input {
+        width: 19em;
+        height: 2em;
+        border: 1px #4d4d4d solid;
+        border-radius: 0.5em;
+        padding: 0.2em;
+    }
+
+    textarea {
+        width: 25em;
+        height: 19em;
+        border: 1px #4d4d4d solid;
+        border-radius: 0.5em;
+        padding: 0.2em;
+    }
+
+    button {
+        width: 10em;
+        height: 3em;
+        border: 1px #4d4d4d solid;
+        border-radius: 0.5em;
+    }

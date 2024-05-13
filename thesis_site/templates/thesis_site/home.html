@@ -1,110 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+{% extends "thesis_site/base.html" %}
 
-    <style>
-         * {
-            margin: 0;
-            padding: 0;
-        }
+{% block title %} Create thesis {% endblock %}
 
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-gap: 20px;
-            padding: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .card {
-            min-width: 50%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f9f9f9;
-            cursor: pointer;
-        }
-
-        .card > .card-header {
-            background-color: #f5f5f5;
-            border-bottom: 1px solid #ddd;
-            padding: 1rem;
-        }
-
-        .card > .card-body {
-            padding: 1rem;
-        }
-
-      nav {
-        background-color: #333;
-        overflow: hidden;
-      }
-
-      nav ul {
-        list-style-type: none;
-        margin: auto;
-        padding: 0;
-        overflow: hidden;
-      }
-
-      nav ul li {
-        float: left;
-      }
-
-      nav ul li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-
-      }
-
-      nav ul li a:hover {
-        background-color: #111;
-      }
-
-      body {
-          font-family: 'Roboto', sans-serif;
-          font-size: 1rem;
-          line-height: 1.5;
-          color: #4d4d4d;
-          background-color: #f8f9fa;
-          max-height: 100vh;
-      }
-
-      .container {
-          height: 80vh;
-          display: flex;
-          flex-direction: column;
-            justify-content: center;
-          align-items: center;
-
-          text-align: center;
-          margin: auto;
-          padding: 0 20px;
-      }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'thesis_topics' %}">Thesis List</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-            </ul>
-        </nav>
-    </header>
-
+{% block content %}
     <div class="container">
         <h1>Welcome to the home page</h1>
         <p>This is a website that contains a collection of thesis papers from different universities.</p>
@@ -113,5 +11,4 @@
 
         <a href="{% url 'thesis_topics' %}">Thesis Papers List</a>
     </div>
-</body>
-</html>
+{% endblock %}

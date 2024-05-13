@@ -1,20 +1,36 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Thesis(models.Model):
-    id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=200)
-    supervisor = models.CharField(max_length=200)
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200, null=False, default='User has not provided any title')
+    supervisor = models.CharField(max_length=200, null=False, default='User has not provided any supervisor')
+    category = models.CharField(max_length=300, null=False, default='User has not provided any category')
+
+    def get_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'category': self.category,
+            'supervisor': self.supervisor,
+        }
 
     def __str__(self):
-        return self.title
+        return f"\
+            'id': {self.id},\
+            'title': {self.title},\
+            'category': {self.category},\
+            'supervisor': {self.supervisor},\
+        "
 
 
-class ThesisDetails(models.Model):
-    thesis = models.ForeignKey(Thesis, on_delete=models.CASCADE)
-    description = models.CharField(max_length=5000)
+class ThesisDescription(models.Model):
+    id = models.OneToOneField(Thesis, on_delete=models.CASCADE, primary_key=True)
+    description = models.TextField(null=False, default='User has not provided any description')
 
     def __str__(self):
-        return self.description
+        return {
+            'id': self.id,
+            'description': self.description
+        }
+
