@@ -28,6 +28,7 @@ class Thesis(models.Model):
             'supervisor': {self.supervisor},\
         "
 
+
 class ThesisDescription(models.Model):
     id = models.OneToOneField(Thesis, on_delete=models.CASCADE, primary_key=True)
     description = models.TextField(null=False, default='User has not provided any description')
