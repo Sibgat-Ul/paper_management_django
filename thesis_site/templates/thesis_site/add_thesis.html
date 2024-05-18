@@ -6,17 +6,18 @@
     <h1 style="text-align: center">Add New Thesis</h1>
     <form action="{% url 'add_thesis' %}" method="post">
         {% csrf_token %}
+{#        {{ form }}#}
 
-        <input type="text" id="title" name="title" placeholder="Title" required>
+        <input type="text" id="title" name="title" placeholder="title" required>
 
-        <input type="text" id="supervisor" name="supervisor" placeholder="Supervisor" required>
+        <input type="text" id="supervisor" name="supervisor" placeholder="supervisor" required>
 
-        <input type="text" id="category" name="category" placeholder="Category" required>
+        <input type="text" id="category" name="category" placeholder="category" required>
 
-        <textarea id="description" name="description" placeholder="Description" required></textarea>
+        <textarea id="description" name="description" placeholder="description" required></textarea>
 
         <button type="submit">
-            Submit
+            submit
         </button>
     </form>
 {% endblock %}

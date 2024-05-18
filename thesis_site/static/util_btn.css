@@ -1,0 +1,16 @@
+.util_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.util_header > .btns > button {
+    max-width: 6em;
+    width: 3em;
+    height: 3em;
+    border: 1px #4d4d4d solid;
+    border-radius: 0.5em;
+    background-color: #1c1c1c;
+    color: white;
+}

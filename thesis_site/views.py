@@ -5,23 +5,6 @@ from .forms import ThesisForm
 from thesis_site.thesis_modules.topic_class import ThesisTopic, ThesisDescription
 import json
 
-# Create your views here.
-# with open('thesis_site/data/topic_obj_1.json') as f:
-#     topics = json.load(f)
-#
-# with open('thesis_site/data/desc_obj_1.json') as f:
-#     desc = json.load(f)
-
-# thesis_list = [
-#     ThesisTopic(t_id=tp['TopicNo'], title=tp['Title'], supervisor=tp['ThesisSupervisor'], category=tp['Category'])
-#     for tp in topics
-# ]
-#
-# thesis_desc = [
-#     ThesisDescription(t_id=des['TopicNo'], description=des['Description'])
-#     for des in desc
-# ]
-
 
 def home(request):
     return render(request, 'thesis_site/home.html')
@@ -44,17 +27,21 @@ def about(request):
 
 def thesis_topics(request):
     thesis_list = Fetch_topic.objects.all()
+
+    thesis_list = [
+        ThesisTopic(
+            t_id=tp.id,
+            title=tp.title,
+            supervisor=tp.supervisor,
+            category=tp.category
+        )
+        for tp in thesis_list
+    ]
+
     context = {
-        'thesis_list': [
-            ThesisTopic(
-                t_id=tp.id,
-                title=tp.title,
-                supervisor=tp.supervisor,
-                category=tp.category
-            )
-            for tp in thesis_list
-        ]
+        'thesis_list': thesis_list
     }
+
     return render(request, context=context, template_name='thesis_site/thesis_topic.html')
 
 
@@ -82,28 +69,45 @@ def add_thesis(request):
             category = form.cleaned_data['category']
 
             thesis = Fetch_topic(title=title, supervisor=supervisor, category=category)
-            thesis.save()
 
             description = form.cleaned_data['description']
-            thesis_description = Fetch_desc(description=description)
+            thesis_description = Fetch_desc(id=thesis.id, description=description)
+
+            thesis.save()
             thesis_description.save()
 
-            return redirect('thesis_details', id=id)
+            return redirect('thesis_details', id=thesis.id)
     else:
         form = ThesisForm()
     return render(request, 'thesis_site/add_thesis.html', {'form': form})
 
 
-def edit_thesis(request, key):
-    thesis = Fetch_topic.objects.get(id=key)
-    thesis_desc = Fetch_desc.objects.get(id=key)
+def edit_thesis(request, id):
+    thesis = Fetch_topic.objects.get(id=id)
+    thesis_desc = Fetch_desc.objects.get(id=id)
     form = ThesisForm(request.POST)
+    context = {
+        'form': form,
+        'thesis': thesis,
+        'thesis_desc': thesis_desc
+    }
+    if request.method == 'POST':
+        form = ThesisForm(request.POST)
+
+        if form.is_valid():
+            thesis.title = form.cleaned_data['title']
+            thesis.supervisor = form.cleaned_data['supervisor']
+            thesis.category = form.cleaned_data['category']
+            thesis_desc.description = form.cleaned_data['description']
+
+            thesis.save()
+            thesis_desc.save()
+            return redirect('thesis_topics', id=id)
+
+    return render(request, 'thesis_site/edit_thesis.html', context)
 
 
-
-    return render(request, 'edit.html', {'form': form})
-
-def delete_thesis(request, key):
-    thesis = Fetch_topic.objects.get(id=key)
+def delete_thesis(request, id):
+    thesis = Fetch_topic.objects.get(id=id)
     thesis.delete()
     return redirect('thesis_topics')

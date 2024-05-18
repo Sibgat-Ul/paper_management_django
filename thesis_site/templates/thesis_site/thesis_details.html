@@ -1,10 +1,31 @@
 {% extends "thesis_site/base.html" %}
 
-{% block title %} Create thesis {% endblock %}
+{% load static %}
+{% block title %} Thesis Details {% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'util_btn.css' %}"> {% endblock %}
+<style>
+
+</style>
 
 {% block content %}
     <div class="topic-description">
-        <h3> Title: {{ topic.TopicNo }}: {{ topic.Title }} </h3>
+        <div class='util_header'>
+            <h3> Title: {{ topic.TopicNo }}: {{ topic.Title }} </h3>
+
+            <div class="btns">
+                <button>
+                    <a href="{% url 'thesis_edit' topic.TopicNo %}">
+                        <img src="{% static 'icons/edit.svg' %}" alt="Edit" style="width: 20px; height: 20px;">
+                    </a>
+                </button>
+                <button>
+                    <a href="{% url 'thesis_delete' topic.TopicNo %}">
+                        <img src="{% static 'icons/delete.svg' %}" alt="Delete" style="width: 20px; height: 20px;">
+                    </a>
+                </button>
+            </div>
+        </div>
         <br>
         <p>
             <strong>Supervisor:</strong> {{ topic.ThesisSupervisor }}

@@ -54,12 +54,11 @@ float: left;
 }
 
 nav ul li a {
-display: block;
-color: white;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 nav ul li a:hover {
@@ -111,13 +110,13 @@ form {
     gap: 1rem;
 }
 
-    input {
-        width: 25em;
-        height: 2em;
-        border: 1px #4d4d4d solid;
-        border-radius: 0.5em;
-        padding: 0.2em;
-    }
+input {
+    width: 25em;
+    height: 2em;
+    border: 1px #4d4d4d solid;
+    border-radius: 0.5em;
+    padding: 0.2em;
+}
 
     textarea {
         width: 25em;

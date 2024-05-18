@@ -4,16 +4,16 @@
 
 {% block content %}
     <h1 style="text-align: center">Add New Thesis</h1>
-    <form action="{% url 'add_thesis' %}" method="post">
+    <form action="{% url 'thesis_edit' thesis.id %}" method="post">
         {% csrf_token %}
 
-        <input type="text" id="title" name="title" placeholder="Title" required>
+        <input type="text" id="title" name="title" value="{{ thesis.title }}" required>
 
-        <input type="text" id="supervisor" name="supervisor" placeholder="Supervisor" required>
+        <input type="text" id="supervisor" name="supervisor" value="{{ thesis.supervisor }}" required>
 
-        <input type="text" id="category" name="category" placeholder="Category" required>
+        <input type="text" id="category" name="category" value="{{ thesis.category }}" required>
 
-        <textarea id="description" name="description" placeholder="Description" required>
+        <textarea id="description" name="description" required>{{ thesis_desc.description }}
         </textarea>
 
         <button type="submit">

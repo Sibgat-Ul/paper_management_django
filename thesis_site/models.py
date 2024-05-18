@@ -7,6 +7,11 @@ class Thesis(models.Model):
     supervisor = models.CharField(max_length=200, null=False, default='User has not provided any supervisor')
     category = models.CharField(max_length=300, null=False, default='User has not provided any category')
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['title', 'supervisor'], name='unique_order')
+        ]
+
     def get_dict(self):
         return {
             'id': self.id,
@@ -23,7 +28,6 @@ class Thesis(models.Model):
             'supervisor': {self.supervisor},\
         "
 
-
 class ThesisDescription(models.Model):
     id = models.OneToOneField(Thesis, on_delete=models.CASCADE, primary_key=True)
     description = models.TextField(null=False, default='User has not provided any description')
@@ -33,4 +37,3 @@ class ThesisDescription(models.Model):
             'id': self.id,
             'description': self.description
         }
-

@@ -1,18 +1,36 @@
 {% extends "thesis_site/base.html" %}
 
-{% block title %} Create thesis {% endblock %}
+{% load static %}
+{% block title %} Thesis Topics {% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'util_btn.css' %}">
+{% endblock %}
+
 
 {% block content %}
     <div class="card-container">
-        {% for topic in topics %}
+        {% for topic in thesis_list %}
             <div class="card">
                 <div class="card-header">
                     <a style="color: #4d4d4d; text-decoration: none;" href="{% url 'thesis_details' topic.TopicNo %}">
+                        <div class='util_header'>
+                                <h3>{{ topic.TopicNo }}: {{ topic.Title }}</h3>
 
-                        <h3>{{ topic.TopicNo }}: {{ topic.Title }}</h3>
+                            <div class="btns">
+                                <button>
+                                    <a href="{% url 'thesis_edit' topic.TopicNo %}">
+                                        <img src="{% static 'icons/edit.svg' %}" alt="Edit" style="width: 20px; height: 20px;">
+                                    </a>
+                                </button>
+                                <button>
+                                    <a href="{% url 'thesis_delete' topic.TopicNo %}">
+                                        <img src="{% static 'icons/delete.svg' %}" alt="Delete" style="width: 20px; height: 20px;">
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
                     </a>
                 </div>
-
                 <div class="card-body">
                     <p>Category: {{ topic.Category }}</p>
                     <p>Supervisor: {{ topic.ThesisSupervisor }}</p>

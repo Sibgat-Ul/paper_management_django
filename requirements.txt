@@ -52,7 +52,7 @@ notebook_shim @ file:///croot/notebook-shim_1699455894279/work
 numpy==1.26.4
 overrides @ file:///croot/overrides_1699371140756/work
 packaging @ file:///croot/packaging_1710807400464/work
-pandas==2.2.1
+pandas~=2.2.2
 pandocfilters @ file:///opt/conda/conda-bld/pandocfilters_1643405455980/work
 parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
 pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
@@ -98,3 +98,5 @@ wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
 webencodings==0.5.1
 websocket-client @ file:///work/ci_py311/websocket-client_1676824890004/work
 widgetsnbextension @ file:///croot/widgetsnbextension_1709322880396/work
+
+Django~=4.1
