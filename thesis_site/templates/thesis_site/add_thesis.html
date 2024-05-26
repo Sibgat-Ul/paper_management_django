@@ -6,7 +6,6 @@
     <h1 style="text-align: center">Add New Thesis</h1>
     <form action="{% url 'add_thesis' %}" method="post">
         {% csrf_token %}
-{#        {{ form }}#}
 
         <input type="text" id="title" name="title" placeholder="title" required>
 

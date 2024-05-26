@@ -56,6 +56,7 @@ def thesis_details(request, id):
         'topic_desc': topic_desc,
         'topic': topic_t
     }
+
     return render(request, context=context, template_name='thesis_site/thesis_details.html')
 
 
@@ -63,47 +64,59 @@ def thesis_details(request, id):
 def add_thesis(request):
     if request.method == 'POST':
         form = ThesisForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            supervisor = form.cleaned_data['supervisor']
-            category = form.cleaned_data['category']
+        try:
+            if form.is_valid():
+                title = form.cleaned_data['title']
+                supervisor = form.cleaned_data['supervisor']
+                category = form.cleaned_data['category']
 
-            thesis = Fetch_topic(title=title, supervisor=supervisor, category=category)
+                thesis = Fetch_topic(title=title, supervisor=supervisor, category=category)
+                thesis.save()
 
-            description = form.cleaned_data['description']
-            thesis_description = Fetch_desc(id=thesis.id, description=description)
+                description = form.cleaned_data['description']
+                thesis_description = Fetch_desc(id=thesis, description=description)
 
-            thesis.save()
-            thesis_description.save()
-
-            return redirect('thesis_details', id=thesis.id)
+                thesis_description.save()
+                return redirect('thesis_details', id=thesis.id)
+            else:
+                return redirect('errors', form.errors.as_data())
+        except Exception as e:
+            return redirect('errors', e)
     else:
-        form = ThesisForm()
+        form = ThesisForm(request.POST)
     return render(request, 'thesis_site/add_thesis.html', {'form': form})
 
 
 def edit_thesis(request, id):
     thesis = Fetch_topic.objects.get(id=id)
-    thesis_desc = Fetch_desc.objects.get(id=id)
+    thesis_desc = Fetch_desc.objects.get(id=thesis)
+
     form = ThesisForm(request.POST)
+
     context = {
         'form': form,
         'thesis': thesis,
         'thesis_desc': thesis_desc
     }
+
     if request.method == 'POST':
         form = ThesisForm(request.POST)
 
-        if form.is_valid():
-            thesis.title = form.cleaned_data['title']
-            thesis.supervisor = form.cleaned_data['supervisor']
-            thesis.category = form.cleaned_data['category']
-            thesis_desc.description = form.cleaned_data['description']
+        try:
+            if form.is_valid():
+                thesis.title = form.cleaned_data['title']
+                thesis.supervisor = form.cleaned_data['supervisor']
+                thesis.category = form.cleaned_data['category']
+                thesis_desc.description = form.cleaned_data['description']
 
-            thesis.save()
-            thesis_desc.save()
-            return redirect('thesis_topics', id=id)
+                thesis.save()
+                thesis_desc.save()
+                return redirect('thesis_topics')
+            else:
+                return redirect('errors', form.errors.as_data())
 
+        except Exception as e:
+            return redirect('errors', e)
     return render(request, 'thesis_site/edit_thesis.html', context)
 
 
@@ -111,3 +124,7 @@ def delete_thesis(request, id):
     thesis = Fetch_topic.objects.get(id=id)
     thesis.delete()
     return redirect('thesis_topics')
+
+# Error handling
+def error(request, exception):
+    return render(request, 'thesis_site/errors.html', context=exception)

@@ -7,6 +7,3 @@ class ThesisForm(Form):
     supervisor = CharField(max_length=200)
     category = CharField(max_length=300)
     description = CharField(widget=Textarea)
-
-
-

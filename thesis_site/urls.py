@@ -11,4 +11,6 @@ urlpatterns = [
     path('thesis_details/<int:id>/details', views.thesis_details, name='thesis_details'),
     path('thesis_details/<int:id>/edit', views.edit_thesis, name='thesis_edit'),
     path('thesis_details/<int:id>/delete', views.delete_thesis, name='thesis_delete'),
+
+    path('errors/', views.error, name='errors'),
 ]

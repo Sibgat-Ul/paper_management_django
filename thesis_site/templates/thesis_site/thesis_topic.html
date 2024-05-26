@@ -12,8 +12,8 @@
         {% for topic in thesis_list %}
             <div class="card">
                 <div class="card-header">
-                    <a style="color: #4d4d4d; text-decoration: none;" href="{% url 'thesis_details' topic.TopicNo %}">
-                        <div class='util_header'>
+                    <a style="color: #4d4d4d; cursor:pointer; text-decoration: none;" href="{% url 'thesis_details' topic.TopicNo %}">
+                        <div class='util_header' style="cursor: default;">
                                 <h3>{{ topic.Title }}</h3>
 
                             <div class="btns">
@@ -32,8 +32,10 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <p>Category: {{ topic.Category }}</p>
-                    <p>Supervisor: {{ topic.ThesisSupervisor }}</p>
+                    <a style="color: #4d4d4d; text-decoration: none;" href="{% url 'thesis_details' topic.TopicNo %}">
+                        <p>Category: {{ topic.Category }}</p>
+                        <p>Supervisor: {{ topic.ThesisSupervisor }}</p>
+                    </a>
                 </div>
             </div>
         {% endfor %}
